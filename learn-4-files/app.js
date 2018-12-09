@@ -1,4 +1,4 @@
-// file system
+// file system methods are async
 const fs = require('fs');
 
 // creates a file
