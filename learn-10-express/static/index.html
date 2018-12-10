@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./main.css">
+    <title></title>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <form action="/" method="post" class="form">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password"/>
+      <input type="submit" />
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      (function() {
+        docReady();
+      })()
+      function docReady() {
+        let form = document.querySelector('.form');
+        form.addEventListener('submit', function() {
+          $.ajax({
+            url: '/',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify($('.form').serializeArray()),
+            success: (response) => {
+              console.log('successfully got response');
+              console.log(response)
+            }
+          })
+        })
+      }
+    </script>
+  </body>
+</html>
