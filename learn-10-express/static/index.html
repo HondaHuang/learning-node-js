@@ -16,24 +16,24 @@
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
-      (function() {
-        docReady();
-      })()
-      function docReady() {
-        let form = document.querySelector('.form');
-        form.addEventListener('submit', function() {
-          $.ajax({
-            url: '/',
-            type: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify($('.form').serializeArray()),
-            success: (response) => {
-              console.log('successfully got response');
-              console.log(response)
-            }
-          })
+      let form = document.querySelector('.form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        console.log('hello');
+        $.ajax({
+          url: '/',
+          type: 'post',
+          contentType: 'application/json',
+          data: JSON.stringify({
+            email: document.querySelector('#email').value,
+            password: document.querySelector('#password').value
+          }),
+          success: (response) => {
+            console.log('successfully got response');
+            console.log(response)
+          }
         })
-      }
+      })
     </script>
   </body>
 </html>
